@@ -427,3 +427,251 @@ footer p{
     margin:5px 0;
 
 }
+
+.games-page{
+
+    width:1000px;
+
+    margin:20px auto;
+
+    background:white;
+
+    border:1px solid #B5C8E8;
+
+    padding:20px;
+
+}
+
+.filter-bar{
+
+    margin-top:20px;
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.filter-bar input,
+.filter-bar select{
+
+    padding:6px;
+
+    border:1px solid #9DB2D5;
+
+    font-family:Tahoma;
+
+}
+
+.game-grid{
+
+    width:1000px;
+
+    margin:20px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+.game-card{
+
+    background:white;
+
+    border:1px solid #BFD2EC;
+
+    padding:10px;
+
+    text-align:center;
+
+    box-shadow:0 1px 4px rgba(0,0,0,.15);
+
+}
+
+.game-card img{
+
+    width:100%;
+
+    height:240px;
+
+    background:#DDE7F8;
+
+    object-fit:cover;
+
+}
+
+.game-card h3{
+
+    margin-top:10px;
+
+    color:#1E2791;
+
+    font-size:15px;
+
+}
+
+.game-card p{
+
+    margin-top:5px;
+
+}
+
+.pagination{
+
+    width:1000px;
+
+    margin:20px auto;
+
+    text-align:center;
+
+}
+
+.search-page{
+
+    width:1000px;
+
+    margin:20px auto;
+
+    background:white;
+
+    padding:20px;
+
+    border:1px solid #BFD2EC;
+
+}
+
+.search-bar{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.search-bar input{
+
+    flex:1;
+
+    padding:8px;
+
+}
+
+.search-results{
+
+    width:1000px;
+
+    margin:20px auto;
+
+}
+
+.result-card{
+
+    display:flex;
+
+    gap:20px;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    background:white;
+
+    border:1px solid #BFD2EC;
+
+}
+
+.result-card img{
+
+    width:120px;
+
+    height:160px;
+
+    background:#D9E5F8;
+
+}
+
+.review-list{
+
+    width:1000px;
+
+    margin:20px auto;
+
+}
+
+.review-card{
+
+    display:flex;
+
+    gap:20px;
+
+    padding:20px;
+
+    background:white;
+
+    border:1px solid #BFD2EC;
+
+    margin-bottom:15px;
+
+}
+
+.review-card img{
+
+    width:100px;
+
+    height:100px;
+
+    background:#ddd;
+
+}
+
+.help-page,
+.faq,
+.ai-chat,
+.ai-response{
+
+    width:1000px;
+
+    margin:20px auto;
+
+    background:white;
+
+    border:1px solid #BFD2EC;
+
+    padding:20px;
+
+}
+
+textarea{
+
+    width:100%;
+
+    height:120px;
+
+    margin-top:15px;
+
+    padding:10px;
+
+    resize:vertical;
+
+    font-family:Tahoma;
+
+}
+
+.answer{
+
+    background:#F5F8FD;
+
+    border:1px solid #C8D7EB;
+
+    padding:15px;
+
+    min-height:100px;
+
+}
