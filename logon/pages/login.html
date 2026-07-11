@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Đăng nhập · Firebase Lesson Template</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-page="login">
+  <div class="app-shell">
+    <header class="topbar compact">
+      <a class="brand-block" href="../index.html">
+        <span class="brand-mark">FL</span>
+        <span>
+          <strong>Firebase Lesson Template</strong>
+          <small data-header-role>Guest</small>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <a href="../index.html">Tổng quan</a>
+        <a class="active" href="./login.html">Đăng nhập</a>
+        <a href="./register.html">Đăng ký</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./admin.html">Admin</a>
+      </nav>
+
+      <div class="auth-actions" data-auth-actions></div>
+    </header>
+
+    <main class="auth-layout">
+      <section class="card auth-card">
+        <div class="eyebrow">Bước 3 · Đăng nhập</div>
+        <h1>Đăng nhập bằng tài khoản Firebase</h1>
+        <p class="lead">
+          Form này gọi trực tiếp Firebase Authentication.
+          Không có tài khoản mẫu, không có localStorage session.
+        </p>
+
+        <form class="form" id="loginForm">
+          <label>
+            Email
+            <input name="email" type="email" placeholder="you@example.com" required />
+          </label>
+
+          <label>
+            Mật khẩu
+            <input name="password" type="password" placeholder="••••••••" required />
+          </label>
+
+          <div id="loginMessage" class="form-message" aria-live="polite"></div>
+          <button class="btn btn-primary btn-full" type="submit">Đăng nhập</button>
+
+          <div class="callout">
+            <strong>Điều kiện để chạy</strong>
+            <p class="tiny" style="margin-top:8px;">
+              1. Bật Email/Password trong Firebase Console.<br>
+              2. Dán config thật vào <code>js/firebase-config.js</code>.<br>
+              3. Dùng tài khoản đã tạo ở bước đăng ký.
+            </p>
+          </div>
+        </form>
+      </section>
+
+      <aside class="card note-card">
+        <div class="section-head">
+          <h2>Các bước</h2>
+          <p>Học sinh làm đúng thứ tự.</p>
+        </div>
+        <div class="side-stack">
+          <article class="guide-card">
+            <div class="step-num">1</div>
+            <h3>Kiểm tra config</h3>
+            <p>Mở <code>js/firebase-config.js</code> và dán cấu hình thật.</p>
+          </article>
+          <article class="guide-card">
+            <div class="step-num">2</div>
+            <h3>Bật provider</h3>
+            <p>Bật Email/Password trong Firebase Authentication.</p>
+          </article>
+          <article class="guide-card">
+            <div class="step-num">3</div>
+            <h3>Đăng nhập</h3>
+            <p>Đăng nhập xong sẽ được chuyển sang Shop.</p>
+          </article>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

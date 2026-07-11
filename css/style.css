@@ -26,9 +26,27 @@
 }
 
 body{
-
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
     font-family:Tahoma, Arial, sans-serif;
+}
 
+.page-content{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 20px;
+}
+
+.about {
+    text-align:center;
+}
+
+.about img {
+    display:block;
+    margin:0 auto 20px;
 }
 
 .navbar a{
