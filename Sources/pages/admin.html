@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Firebase Lesson Template</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-page="admin">
+  <div class="app-shell">
+    <header class="topbar compact">
+      <a class="brand-block" href="../index.html">
+        <span class="brand-mark">FL</span>
+        <span>
+          <strong>Firebase Lesson Template</strong>
+          <small data-header-role>Guest</small>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <a href="../index.html">Tổng quan</a>
+        <a href="./login.html">Đăng nhập</a>
+        <a href="./register.html">Đăng ký</a>
+        <a href="./shop.html">Shop</a>
+        <a class="active" href="./admin.html">Admin</a>
+      </nav>
+
+      <div class="auth-actions" data-auth-actions></div>
+    </header>
+
+    <main class="admin-layout">
+      <section class="card admin-card" id="adminHero">
+        <div class="eyebrow">Bước 6 · Admin</div>
+        <h1>Khu quản trị minh họa</h1>
+        <p class="lead">
+          Phần này dùng để luyện phân quyền. Trước hết phải đăng nhập bằng Firebase thật, sau đó mới đổi role minh họa.
+        </p>
+      </section>
+
+      <section class="card admin-card" id="adminPanel">
+        <div class="section-head">
+          <h2>Role demo</h2>
+          <p>Bấm nút để đổi giữa User và Admin.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ - Game</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
 </head>
 <body>
 <header class="navbar">
@@ -47,39 +47,26 @@
 
     <p>Tìm kiếm theo tên trò chơi.</p>
 
-    <div class="search-bar">
+    <form id="searchForm" class="search-bar">
 
         <input
+            id="searchInput"
             type="text"
-            placeholder="Ví dụ: Minecraft">
+            placeholder="Ví dụ: Minecraft"
+            name="q">
 
-        <button>Tìm kiếm</button>
+        <button type="submit">Tìm kiếm</button>
 
-    </div>
+    </form>
 
 </section>
 
 <section class="search-results">
 
-    <div class="result-card">
-
-        <img src="images/placeholder.png">
-
-        <div>
-
-            <h3>Minecraft</h3>
-
-            <p>⭐ 92</p>
-
-            <p>Sandbox</p>
-
-            <button>Xem chi tiết</button>
-
-        </div>
-
-    </div>
+    <div id="searchResults"></div>
 
 </section>
+
 
 <!-- ================= ABOUT ================= -->
 

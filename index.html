@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ - Game</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
 </head>
 <body>
 <header class="navbar">
@@ -51,13 +51,13 @@
         Cổng thông tin trò chơi điện tử sử dụng dữ liệu từ OpenCritic.
     </p>
 
-    <div class="search-box">
+    <form id="searchForm" class="search-box">
 
-        <input type="text" placeholder="Nhập tên trò chơi...">
+        <input id="searchInput" type="text" placeholder="Nhập tên trò chơi..." name="q">
 
-        <button>Tìm kiếm</button>
+        <button type="submit">Tìm kiếm</button>
 
-    </div>
+    </form>
 
 </section>
 
