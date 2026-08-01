@@ -3,11 +3,49 @@ import { auth, observeAuth, registerUser, loginUser, logoutUser } from "./auth.j
 import { PRODUCTS } from "./data.js";
 import { getDemoRole, toggleDemoRole, requireAuth } from "./guards.js";
 
+const GUEST_SEARCH_LIMIT = 3;
+const BLOCKED_PAGES = ["login", "register", "blocked"];
 const page = document.body.dataset.page;
 let authReady = false;
 
 function qs(id) {
   return document.getElementById(id);
+}
+
+function getGuestSearchRemaining() {
+  const value = localStorage.getItem("guestSearchRemaining");
+  const parsed = Number.parseInt(value, 10);
+  return Number.isInteger(parsed) && parsed >= 0 ? parsed : GUEST_SEARCH_LIMIT;
+}
+
+function setGuestSearchRemaining(value) {
+  localStorage.setItem("guestSearchRemaining", String(Math.max(0, value)));
+}
+
+function decrementGuestSearchRemaining() {
+  const next = Math.max(0, getGuestSearchRemaining() - 1);
+  setGuestSearchRemaining(next);
+  return next;
+}
+
+function resetGuestSearchRemaining() {
+  localStorage.removeItem("guestSearchRemaining");
+}
+
+function isGuestBlocked() {
+  return getGuestSearchRemaining() <= 0;
+}
+
+function shouldRedirectGuestToBlocked() {
+  return authReady && !auth.currentUser && isGuestBlocked() && !BLOCKED_PAGES.includes(page);
+}
+
+function redirectGuestToBlocked() {
+  if (shouldRedirectGuestToBlocked()) {
+    window.location.href = "blocked.html";
+    return true;
+  }
+  return false;
 }
 
 function money(value) {
@@ -32,23 +70,59 @@ function safeReturnUrl(defaultUrl) {
   return defaultUrl;
 }
 
+function buildReturnUrl() {
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  return `../../${currentPage}`;
+}
+
 function siteUrls() {
   const inPages = window.location.pathname.includes("/pages/");
+  const inLogon = window.location.pathname.includes("/logon/");
   return {
-    login: inPages ? "./login.html" : "./pages/login.html",
-    register: inPages ? "./register.html" : "./pages/register.html",
-    home: inPages ? "../index.html" : "./index.html",
+    login: inPages ? "./login.html" : inLogon ? "./pages/login.html" : "logon/pages/login.html",
+    register: inPages ? "./register.html" : inLogon ? "./register.html" : "logon/pages/register.html",
+    home: inPages ? "../index.html" : inLogon ? "../index.html" : "index.html",
   };
 }
 
 function renderHeader() {
+  const accountEl = document.querySelector(".account");
+  const adminButton = document.getElementById("adminBtn");
   const roleEl = document.querySelector("[data-header-role]");
   const authActions = document.querySelector("[data-auth-actions]");
   const user = auth.currentUser;
   const urls = siteUrls();
+  const returnUrl = buildReturnUrl();
+
+  if (adminButton) {
+    const isAdmin = Boolean(user?.email?.toLowerCase() === "administrator@aol.com");
+    adminButton.style.display = isAdmin ? "inline-block" : "none";
+  }
 
   if (roleEl) {
     roleEl.textContent = user ? user.email : "Guest";
+  }
+
+  if (accountEl) {
+    if (user) {
+      resetGuestSearchRemaining();
+      accountEl.innerHTML = `
+        <span class="badge user">${user.email}</span>
+        <button id="logoutBtn" type="button">Đăng xuất</button>
+      `;
+      qs("logoutBtn")?.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = urls.home;
+      });
+    } else {
+      const remaining = getGuestSearchRemaining();
+      accountEl.innerHTML = `
+        <span class="badge-guest" style="margin-right:12px;">Remaining Search: ${remaining}</span>
+        <a href="${urls.login}?returnUrl=${encodeURIComponent(returnUrl)}">Đăng nhập</a>
+        <a href="${urls.register}?returnUrl=${encodeURIComponent(returnUrl)}">Đăng Kí</a>
+      `;
+    }
+    return;
   }
 
   if (!authActions) return;
@@ -425,19 +499,38 @@ function renderPage() {
 }
 
 renderHeader();
-renderPage();
+if (!redirectGuestToBlocked()) {
+  renderPage();
+}
 
-observeAuth(() => {
+observeAuth((user) => {
   authReady = true;
+  if (user) {
+    resetGuestSearchRemaining();
+  }
   renderHeader();
 
-  if (page === "shop") {
-    renderShop();
-  } else if (page === "admin") {
-    if (!auth.currentUser) {
-      renderAdminLocked();
-      return;
+  if (!redirectGuestToBlocked()) {
+    if (page === "shop") {
+      renderShop();
+    } else if (page === "admin") {
+      if (!auth.currentUser) {
+        renderAdminLocked();
+        return;
+      }
+      renderAdminOpen(auth.currentUser);
     }
-    renderAdminOpen(auth.currentUser);
   }
 });
+
+
+
+
+
+
+
+
+
+
+const adminButton = document.getElementById("adminBtn");
+

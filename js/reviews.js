@@ -1,13 +1,3 @@
-const API_BASE_URL = "https://opencritic-api.p.rapidapi.com";
-
-const API_OPTIONS = {
-    method: "GET",
-    headers: {
-        "x-rapidapi-key": "fe7f18dd34msh28d6ac0d74956fbp12b4afjsnb31038159c43",
-        "x-rapidapi-host": "opencritic-api.p.rapidapi.com",
-        "Content-Type": "application/json"
-    }
-};
 
 function getGameId() {
     const params = new URLSearchParams(window.location.search);

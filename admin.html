@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin">
+    <header class="navbar">
+        <div class="logo">
+            <p>Gamepedia AI Admin</p>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="games.html">Trò Chơi</a>
+            <a href="search.html">Tìm Kiếm</a>
+            <a href="reviews.html">Đánh Giá</a>
+            <a href="help.html">Trợ giúp</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+        <div class="account">
+            <span id="userEmail" style="color: white; margin-right: 10px;">Guest</span>
+            <button id="logoutBtn" style="display:none;">Đăng xuất</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Quản Trị Hệ Thống</h1>
+        <p>Quản lý các thông báo và tin tức hiển thị trên trang chủ</p>
+    </section>
+
+    <section class="search-page">
+        <h2>Thêm Thông Báo Mới</h2>
+        <form id="announcementForm" class="search-bar" style="flex-direction: column; gap: 15px; width: 100%; max-width: 600px;">
+            <div>
+                <label for="title" style="display: block; margin-bottom: 8px; font-weight: bold;">Tiêu đề:</label>
+                <input 
+                    id="title" 
+                    type="text" 
+                    placeholder="Nhập tiêu đề thông báo..." 
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #9AAFCF; border-radius: 5px;"
+                />
+            </div>
+            <div>
+                <label for="content" style="display: block; margin-bottom: 8px; font-weight: bold;">Nội dung:</label>
+                <textarea 
+                    id="content" 
+                    placeholder="Nhập nội dung thông báo..." 
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #9AAFCF; border-radius: 5px; min-height: 100px; font-family: Tahoma, Arial;"
+                ></textarea>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input 
+                    id="important" 
+                    type="checkbox"
+                    style="width: 18px; height: 18px; cursor: pointer;"
+                />
+                <label for="important" style="font-weight: normal; cursor: pointer;">Đánh dấu là quan trọng</label>
+            </div>
+            <button type="submit" style="width: 100%; align-self: flex-start;">Đăng Thông Báo</button>
+            <div id="formMessage" class="form-message" style="width: 100%; margin: 0;"></div>
+        </form>
+    </section>
+
+    <section class="search-page">
+        <h2>Danh Sách Thông Báo</h2>
+        <div id="announcementsList" style="display: flex; flex-direction: column; gap: 15px;">
+            <p>Đang tải...</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Gamepedia AI © 2026</p>
+        <p>Admin Panel</p>
+    </footer>
+
+    <script type="module">
+        import { auth, observeAuth, logoutUser } from "./js/auth.js";
+        import { addAnnouncement, getAnnouncements, deleteAnnouncement } from "./js/admin.js";
+
+        let isAdmin = false;
+        const ADMIN_EMAIL = "administrator@aol.com";
+
+        // Kiểm tra quyền admin
+        observeAuth((user) => {
+            const userEmailEl = document.getElementById("userEmail");
+            const logoutBtn = document.getElementById("logoutBtn");
+            const form = document.getElementById("announcementForm");
+
+            if (!user) {
+                userEmailEl.textContent = "Guest";
+                logoutBtn.style.display = "none";
+                form.style.display = "none";
+                isAdmin = false;
+                return;
+            }
+
+            userEmailEl.textContent = user.email;
+            logoutBtn.style.display = "inline-block";
+
+            if (user.email !== ADMIN_EMAIL) {
+                form.style.display = "none";
+                isAdmin = false;
+                return;
+            }
+
+            form.style.display = "block";
+            isAdmin = true;
+            loadAnnouncements();
+        });
+
+        logoutBtn.addEventListener("click", async () => {
+            await logoutUser();
+            window.location.href = "index.html";
+        });
+
+        // Hàm tải danh sách thông báo
+        async function loadAnnouncements() {
+            const list = document.getElementById("announcementsList");
+            list.innerHTML = "<p>Đang tải...</p>";
+
+            const result = await getAnnouncements();
+            if (!result.success) {
+                list.innerHTML = `<p style="color: red;">Lỗi: ${result.error}</p>`;
+                return;
+            }
+
+            if (result.data.length === 0) {
+                list.innerHTML = "<p>Chưa có thông báo nào.</p>";
+                return;
+            }
+
+            list.innerHTML = result.data
+                .map((ann) => {
+                    const date = ann.date?.toDate?.() 
+                        ? new Date(ann.date.toDate()).toLocaleString("vi-VN")
+                        : "Không xác định";
+                    return `
+                        <div style="border: 1px solid #B5C8E8; padding: 15px; background: white; border-radius: 5px;">
+                            <h3 style="color: #1E2791; margin: 0 0 10px 0;">${ann.title}</h3>
+                            <p style="color: #4b5563; margin: 0 0 10px 0; line-height: 1.6;">${ann.content}</p>
+                            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                                <small style="color: #64748b;">👤 ${ann.author}</small>
+                                <small style="color: #64748b;">📅 ${date}</small>
+                                ${ann.important ? '<span style="background: #ffebee; color: #c41c3b; padding: 3px 8px; border-radius: 3px; font-size: 12px;">Quan trọng</span>' : ""}
+                            </div>
+                            ${isAdmin ? `<button onclick="deleteItem('${ann.id}')" style="padding: 6px 12px; font-size: 12px; background: #ff6b6b; border: 1px solid #c41c3b; cursor: pointer;">Xóa</button>` : ""}
+                        </div>
+                    `;
+                })
+                .join("");
+        }
+
+        // Hàm xóa thông báo
+        window.deleteItem = async (id) => {
+            if (!confirm("Bạn chắc chắn muốn xóa thông báo này?")) return;
+            const result = await deleteAnnouncement(id);
+            if (result.success) {
+                loadAnnouncements();
+            } else {
+                alert("Lỗi: " + result.error);
+            }
+        };
+
+        // Xử lý form thêm thông báo
+        document.getElementById("announcementForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const title = document.getElementById("title").value;
+            const content = document.getElementById("content").value;
+            const important = document.getElementById("important").checked;
+            const messageEl = document.getElementById("formMessage");
+
+            messageEl.textContent = "Đang đăng...";
+            messageEl.className = "form-message";
+
+            const result = await addAnnouncement(title, content, important);
+
+            if (result.success) {
+                messageEl.textContent = "Thông báo đã được đăng thành công!";
+                messageEl.className = "form-message success";
+                document.getElementById("announcementForm").reset();
+                loadAnnouncements();
+                setTimeout(() => {
+                    messageEl.textContent = "";
+                }, 3000);
+            } else {
+                messageEl.textContent = "Lỗi: " + result.error;
+                messageEl.className = "form-message";
+            }
+        });
+
+        // Tải danh sách khi trang mở
+        loadAnnouncements();
+    </script>
+</body>
+</html>

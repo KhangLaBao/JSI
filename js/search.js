@@ -1,3 +1,5 @@
+import { auth, observeAuth } from "./auth.js";
+
 const API_BASE_URL = "https://opencritic-api.p.rapidapi.com";
 const FALLBACK_GAMES = [
   {
@@ -230,6 +232,34 @@ async function fetchGamesFromApi(query) {
   return FALLBACK_GAMES;
 }
 
+let authStateReady = false;
+let domReady = document.readyState !== "loading";
+let searchPageInitialized = false;
+
+function isUserLoggedIn() {
+  return Boolean(auth.currentUser);
+}
+
+function getGuestSearchRemaining() {
+  const value = localStorage.getItem("guestSearchRemaining");
+  const parsed = Number.parseInt(value, 10);
+  return Number.isInteger(parsed) && parsed >= 0 ? parsed : 3;
+}
+
+function setGuestSearchRemaining(value) {
+  localStorage.setItem("guestSearchRemaining", String(Math.max(0, value)));
+}
+
+function decrementGuestSearchRemaining() {
+  const next = Math.max(0, getGuestSearchRemaining() - 1);
+  setGuestSearchRemaining(next);
+  return next;
+}
+
+function isGuestBlocked() {
+  return getGuestSearchRemaining() <= 0;
+}
+
 function bindSearchForm() {
   const searchForm = document.getElementById("searchForm");
   const searchInput = document.getElementById("searchInput");
@@ -245,6 +275,18 @@ function bindSearchForm() {
       return;
     }
 
+    if (!isUserLoggedIn()) {
+      if (isGuestBlocked()) {
+        window.location.href = "blocked.html";
+        return;
+      }
+      const remaining = decrementGuestSearchRemaining();
+      if (remaining <= 0) {
+        window.location.href = "blocked.html";
+        return;
+      }
+    }
+
     window.location.href = `search.html?q=${encodeURIComponent(query)}`;
   });
 }
@@ -258,9 +300,22 @@ async function initSearchPage() {
     searchInput.value = query;
   }
 
+  if (!isUserLoggedIn() && isGuestBlocked()) {
+    window.location.href = "blocked.html";
+    return;
+  }
+
   if (!query) {
     renderResults(query);
     return;
+  }
+
+  if (!isUserLoggedIn()) {
+    const remaining = decrementGuestSearchRemaining();
+    if (remaining <= 0) {
+      window.location.href = "blocked.html";
+      return;
+    }
   }
 
   renderResults(query, [], "Đang tìm kiếm...");
@@ -277,8 +332,45 @@ async function initSearchPage() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initSearchPage);
-} else {
-  initSearchPage();
+function tryInitSearchPage() {
+  if (!searchPageInitialized && authStateReady && domReady) {
+    searchPageInitialized = true;
+    initSearchPage();
+  }
 }
+
+observeAuth(() => {
+  authStateReady = true;
+  tryInitSearchPage();
+});
+
+if (domReady) {
+  tryInitSearchPage();
+} else {
+  document.addEventListener("DOMContentLoaded", () => {
+    domReady = true;
+    tryInitSearchPage();
+  });
+}
+async function checkRateLimit(sampleQuery = "test") {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 4000);
+  const url = `${API_BASE_URL}/game/search?criteria=${encodeURIComponent(sampleQuery)}`;
+
+  try {
+    const response = await fetch(url, { ...API_OPTIONS, signal: controller.signal });
+
+    console.log("Rate limit headers:");
+    console.log("x-ratelimit-requests-remaining:", response.headers.get("x-ratelimit-requests-remaining"));
+    console.log("x-ratelimit-requests-reset:", response.headers.get("x-ratelimit-requests-reset"));
+    console.log("x-ratelimit-limit:", response.headers.get("x-ratelimit-limit") || response.headers.get("x-ratelimit-requests-limit"));
+
+    return response;
+  } catch (err) {
+    console.error("Rate limit check failed:", err);
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
+
+checkRateLimit();

@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ - Game</title>
+    <title>GamepediaAI</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/search.js"></script>
+    <script type="module" src="js/app.js"></script>
 </head>
+<style>
+  body {
+    background-image: url('/images/thumb-1920-217092.jpg');
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover;      /* Forces image to cover the entire screen */
+  }
+</style>
+
 <body>
+    
 <header class="navbar">
 
     <div class="logo">
-        <p>Placeholder</p>
+        <img src="images/logo.png" alt="Logo">
     </div>
 
     <nav class="nav-links">
@@ -22,17 +31,26 @@
 
         <a href="search.html">Trình Tìm Kiếm</a>
 
-        <a href="reviews.html">Đánh Gía</a>
+        <a href="reviews.html">Đánh Giá</a>
 
         <a href="help.html">Trợ giúp bằng trí tuệ nhân tạo</a>
 
+        <a id="adminBtn"
+        href="admin.html"
+        style="display:none">
+
+        Admin
+
+        </a>
+
     </nav>
+    
 
     <div class="account">
 
-        <a href="login.html">Đăng nhập</a>
+        <a href="logon/pages/login.html">Đăng nhập</a>
 
-        <a href="register.html">Đăng Kí</a>
+        <a href="logon/pages/register.html">Đăng Kí</a>
 
     </div>
 
@@ -51,7 +69,7 @@
         Cổng thông tin trò chơi điện tử sử dụng dữ liệu từ OpenCritic.
     </p>
 
-    <form id="searchForm" class="search-box">
+    <form id="searchForm" class="search-box" action="search.html" method="get">
 
         <input id="searchInput" type="text" placeholder="Nhập tên trò chơi..." name="q">
 
@@ -60,6 +78,13 @@
     </form>
 
 </section>
+
+    <section class="search-page">
+        <h2>Danh Sách Thông Báo</h2>
+        <div id="announcementsList" style="display: flex; flex-direction: column; gap: 15px;">
+            <p>Đang tải...</p>
+        </div>
+    </section>    
 
 <!-- ================= FEATURED ================= -->
 
@@ -70,18 +95,63 @@
     <div class="featured-card">
 
         <div class="game-image">
-            Hình ảnh
+            <img src="/images/images (1).jpg" class="game-image">
         </div>
 
         <div class="game-info">
 
-            <h3>Tên trò chơi</h3>
+            <h3>Half-Life: Alyx</h3>
 
             <p>
-                Mô tả ngắn của trò chơi...
+            Half-Life: Alyx là tựa game thực tế ảo (VR) của Valve, lấy bối cảnh giữa Half-Life và Half-Life 2. Người chơi vào vai Alyx Vance trong cuộc chiến chống lại Combine, sử dụng cơ chế tương tác VR tiên tiến để giải đố, khám phá và chiến đấu. Đây là một trong những trò chơi VR được đánh giá cao nhất mọi thời đại.
             </p>
 
-            <button>Xem chi tiết</button>
+            <a href="reviews.html?id=8996" style="
+            
+                display:inline-block;
+
+    padding:8px 18px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    border-radius:5px;
+
+    border:1px solid #24418f;
+
+    font-family:Tahoma, Arial, sans-serif;
+
+    font-size:12px;
+
+    background:
+    linear-gradient(
+        to bottom,
+
+        #64B6EE 0%,
+
+        #4C9ADD 45%,
+
+        #427BD2 46%,
+
+        #3364C0 100%
+    );
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.65),
+
+        0 1px rgba(0,0,0,.35);
+
+    text-shadow:
+
+        0 -1px rgba(0,0,0,.5);
+            
+            ">
+                Xem đánh giá
+            </a>
 
         </div>
 
@@ -89,93 +159,18 @@
 
 </section>
 
-<!-- ================= TOP RATED ================= -->
+<center>
+    <section class="hero"><h1>Trò chơi được đánh giá cao nhất</h1>
+    
+<div id="topRated" class="card-container"></div>
 
-<section class="games">
+<div id="newest" class="card-container"></div>
 
-    <h2>Đánh giá cao nhất</h2>
-
-    <div class="card-container">
-
-        <div class="game-card">Game 1</div>
-
-        <div class="game-card">Game 2</div>
-
-        <div class="game-card">Game 3</div>
-
-        <div class="game-card">Game 4</div>
-
-    </div>
-
+<div id="recommended" class="card-container"></div>
 </section>
+</center>
 
-<!-- ================= NEW RELEASE ================= -->
 
-<section class="games">
-
-    <h2>Mới phát hành</h2>
-
-    <div class="card-container">
-
-        <div class="game-card">Game</div>
-
-        <div class="game-card">Game</div>
-
-        <div class="game-card">Game</div>
-
-        <div class="game-card">Game</div>
-
-    </div>
-
-</section>
-
-<!-- ================= RECOMMENDED ================= -->
-
-<section class="games">
-
-    <h2>Được đề xuất nhiều nhất</h2>
-
-    <div class="card-container">
-
-        <div class="game-card">Game</div>
-
-        <div class="game-card">Game</div>
-
-        <div class="game-card">Game</div>
-
-        <div class="game-card">Game</div>
-
-    </div>
-
-</section>
-
-<!-- ================= GENRES ================= -->
-
-<section class="genres">
-
-    <h2>Thể loại</h2>
-
-    <div class="genre-list">
-
-        <button>Action</button>
-
-        <button>Adventure</button>
-
-        <button>RPG</button>
-
-        <button>FPS</button>
-
-        <button>Horror</button>
-
-        <button>Racing</button>
-
-        <button>Simulation</button>
-
-        <button>Strategy</button>
-
-    </div>
-
-</section>
 
 <!-- ================= ABOUT ================= -->
 
@@ -195,6 +190,8 @@
 
 <!-- ================= FOOTER ================= -->
 
+
+<div class="contentSpace"></div>
 <footer>
 
     <p>
@@ -205,13 +202,57 @@
 
     <p>
 
-        Powered by OpenCritic API • Firebase • Gemini AI
+        Powered by OpenCritic API • Firebase • ChatGPT
 
     </p>
 
 </footer>
 
 
+    <script src="js/games-db.js"></script>
+    <script src="js/index.js"></script>
+
+    <script type="module">
+        import { getAnnouncements } from "./js/admin.js";
+
+        // Load announcements for public display
+        async function loadPublicAnnouncements() {
+            const list = document.getElementById("announcementsList");
+            const result = await getAnnouncements();
+
+            if (!result.success) {
+                list.innerHTML = `<p style="color: #666;">Không thể tải thông báo.</p>`;
+                return;
+            }
+
+            if (result.data.length === 0) {
+                list.innerHTML = `<p style="color: #666;">Hiện chưa có thông báo nào.</p>`;
+                return;
+            }
+
+            list.innerHTML = result.data
+                .map((ann) => {
+                    const date = ann.date?.toDate?.() 
+                        ? new Date(ann.date.toDate()).toLocaleString("vi-VN")
+                        : "Không xác định";
+                    return `
+                        <div style="border: 1px solid #B5C8E8; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,.15);">
+                            <h3 style="color: #1E2791; margin: 0 0 10px 0;">${ann.title}</h3>
+                            <p style="color: #4b5563; margin: 0 0 10px 0; line-height: 1.6;">${ann.content}</p>
+                            <div style="display: flex; gap: 10px; align-items: center; font-size: 12px; color: #64748b;">
+                                <small>👤 ${ann.author}</small>
+                                <small>📅 ${date}</small>
+                                ${ann.important ? '<span style="background: #ffebee; color: #c41c3b; padding: 3px 8px; border-radius: 3px;">⭐ Quan trọng</span>' : ""}
+                            </div>
+                        </div>
+                    `;
+                })
+                .join("");
+        }
+
+        // Load when page is ready
+        loadPublicAnnouncements();
+    </script>
 
 </body>
 </html>

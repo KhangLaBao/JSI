@@ -1,61 +1,122 @@
+<!DOCTYPE html>
+<html>
 
-<!doctype html>
-<html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shop · Firebase Lesson Template</title>
-  <link rel="stylesheet" href="../css/styles.css" />
+
+<title>Redirecting...</title>
+
+<meta http-equiv="refresh" content="5;url=index.html">
+
+<style>
+
+body{
+
+    background:#C0C0C0;
+
+    font-family:Tahoma, Arial;
+
+    font-size:12px;
+
+    color:#000;
+
+    margin-top:80px;
+
+    text-align:center;
+
+}
+
+.box{
+
+    width:420px;
+
+    margin:auto;
+
+    background:#FFFFFF;
+
+    border:2px outset #C0C0C0;
+
+    padding:20px;
+
+}
+
+h2{
+
+    margin-top:0;
+
+    font-size:16px;
+
+    color:#000080;
+
+}
+
+</style>
+
+<script>
+
+var seconds = 0;
+
+function countdown(){
+
+    document.getElementById("count").innerHTML = seconds;
+
+    if(seconds <= 0){
+
+        window.location.href = "/index.html";
+
+    }else{
+
+        seconds--;
+
+        setTimeout(countdown,1000);
+
+    }
+
+}
+
+window.onload = countdown;
+
+</script>
+
 </head>
-<body data-page="shop">
-  <div class="app-shell">
-    <header class="topbar compact">
-      <a class="brand-block" href="../index.html">
-        <span class="brand-mark">FL</span>
-        <span>
-          <strong>Firebase Lesson Template</strong>
-          <small data-header-role>Guest</small>
-        </span>
-      </a>
 
-      <nav class="nav">
-        <a href="../index.html">Tổng quan</a>
-        <a href="./login.html">Đăng nhập</a>
-        <a href="./register.html">Đăng ký</a>
-        <a class="active" href="./shop.html">Shop</a>
-        <a href="./admin.html">Admin</a>
-      </nav>
+<body>
 
-      <div class="auth-actions" data-auth-actions></div>
-    </header>
+<div class="box">
 
-    <main class="shop-layout">
-      <section class="card shop-card section-span-2" id="shopHero">
-        <div class="eyebrow">Bước 5 · Shop</div>
-        <h1>Shop online</h1>
-        <p class="lead">
-          Trang này dùng để kiểm tra route guard.
-          Chưa đăng nhập thì shop sẽ khóa, đăng nhập xong mới xem được sản phẩm.
-        </p>
-      </section>
+<h2>Redirecting...</h2>
 
-      <section class="card shop-card">
-        <div class="section-head">
-          <h2>Sản phẩm minh họa</h2>
-          <p>Danh sách chỉ hiện đầy đủ khi đã đăng nhập.</p>
-        </div>
-        <div id="productGrid" class="product-grid"></div>
-      </section>
+<p>
 
-      <aside class="card shop-card">
-        <div class="section-head">
-          <h2>Trạng thái</h2>
-          <p>Hiển thị trạng thái đăng nhập.</p>
-        </div>
-        <div id="shopInfo" class="side-stack"></div>
-      </aside>
-    </main>
-  </div>
-  <script type="module" src="../js/app.js"></script>
+The page you requested has moved.
+
+</p>
+
+<p>
+
+You will be redirected to the homepage in
+<b><span id="count">0</span></b>
+seconds.
+
+</p>
+
+<p>
+
+If your browser does not redirect automatically,
+
+<a href="index.html">click here</a>.
+
+</p>
+
+<hr>
+
+<small>
+
+Gamepedia AI © 2026
+
+</small>
+
+</div>
+
 </body>
+
 </html>

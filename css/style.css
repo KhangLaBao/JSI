@@ -22,6 +22,172 @@
     justify-content:space-between;
 
     padding:0 20px;
+    
+    position:sticky;
+
+    top:0;
+
+    z-index:9999;
+
+
+
+}
+
+.admin-panel{
+
+    width:900px;
+
+    margin:30px auto;
+
+    background:#ffffff;
+
+    border:1px solid #8ea9c9;
+
+    padding:18px;
+
+    font-family:Tahoma;
+
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+
+}
+
+.admin-panel h2{
+
+    margin-top:0;
+
+    color:#1d4d8f;
+
+    border-bottom:1px solid #8ea9c9;
+
+    padding-bottom:8px;
+
+}
+
+.admin-user{
+
+    background:#eef5ff;
+
+    border:1px solid #b8cae8;
+
+    padding:10px;
+
+    margin-bottom:15px;
+
+}
+
+.admin-panel input[type=text],
+.admin-panel textarea,
+.admin-panel select{
+
+    width:100%;
+
+    padding:8px;
+
+    margin-top:4px;
+
+    margin-bottom:14px;
+
+    border:1px solid #8ea9c9;
+
+    font-family:Tahoma;
+
+    font-size:13px;
+
+    background:white;
+
+}
+
+.admin-panel textarea{
+
+    resize:vertical;
+
+}
+
+#publishBtn{
+
+    padding:8px 20px;
+
+    font-family:Tahoma;
+
+    font-weight:bold;
+
+    color:white;
+
+    border:1px solid #24418f;
+
+    border-radius:4px;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        #64B6EE,
+        #427BD2
+    );
+
+}
+
+#publishBtn:hover{
+
+    background:linear-gradient(
+        #7bc5f2,
+        #5d91e2
+    );
+
+}
+
+.announcement-item{
+
+    border:1px solid #b7c7e0;
+
+    background:#f8fbff;
+
+    margin-top:12px;
+
+    padding:12px;
+
+}
+
+.announcement-title{
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:#1d4d8f;
+
+}
+
+.announcement-meta{
+
+    font-size:11px;
+
+    color:#666;
+
+    margin-bottom:8px;
+
+}
+
+.deleteBtn{
+
+    margin-top:10px;
+
+    padding:5px 12px;
+
+    font-family:Tahoma;
+
+    cursor:pointer;
+
+    color:white;
+
+    border:1px solid #8a0000;
+
+    background:#cc3333;
+
+}
+
+.deleteBtn:hover{
+
+    background:#ff4444;
 
 }
 
@@ -881,7 +1047,7 @@ footer p{
 .ai-chat,
 .ai-response{
 
-    width:1000px;
+    width:1000px !important;
 
     margin:20px auto;
 
@@ -921,3 +1087,355 @@ textarea{
 
 }
 
+.card-container{
+    width:900px;
+    margin:20px auto;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+/* Square two-column game card: image | info */
+.game-card{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:12px;
+    background:#ffffff;
+    border:1px solid #BFD2EC; /* flat boxed border */
+    border-radius:0; /* 2006-style square corners */
+    padding:8px;
+    margin:10px;
+    box-shadow:none; /* remove modern shadow */
+    font-family:Tahoma, Arial, sans-serif;
+    width:260px; /* square size */
+    height:260px; /* square size */
+    box-sizing:border-box;
+}
+
+.game-card img{
+    width:48%;
+    height:100%;
+    object-fit:cover;
+    border:1px solid #A9BBD6;
+    flex-shrink:0;
+    border-radius:0; /* square image corners */
+}
+
+.game-card .info{
+    width:52%;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding:6px 4px;
+}
+
+/* Ensure info children stack and take full width so title, rating, genre, button are vertical */
+.game-card .info > *{
+    width:100%;
+}
+
+/* If rating/star is inside the h3 or a span, force it onto its own line */
+.game-card h3 span,
+.game-card .score,
+.game-card .rating{
+    display:block !important;
+    margin-top:6px !important;
+    font-size:13px !important;
+    color:#333 !important;
+}
+
+.game-card h3{
+    margin:0 0 8px 0;
+    color:#1d4d8f;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.game-card p{
+    margin:4px 0;
+    font-size:13px;
+    color:#333;
+}
+
+.game-card .detail-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:8px 14px;
+    color:white;
+    text-decoration:none;
+    font-family:Tahoma;
+    font-size:12px;
+    font-weight:bold;
+    border:1px solid #24418f;
+    border-radius:5px;
+    background:
+        linear-gradient(
+            to bottom,
+            #64B6EE,
+            #4C9ADD 45%,
+            #427BD2 46%,
+            #3364C0
+        );
+    box-shadow:inset 0 1px rgba(255,255,255,.65), 0 1px rgba(0,0,0,.3);
+    align-self:flex-start;
+}
+
+.game-card .detail-btn:hover{
+    background:
+        linear-gradient(
+            to bottom,
+            #8DD0F7,
+            #64B6EE 45%,
+            #4C9ADD 46%,
+            #427BD2
+        );
+}
+
+.game-card .detail-btn:active{
+    background:linear-gradient(to bottom,#3364C0,#427BD2);
+    box-shadow:inset 0 2px 5px rgba(0,0,0,.4);
+}
+
+.badge.user{
+
+    display:inline-block;
+
+    padding:3px 10px;
+
+    font-family:Tahoma, Arial, sans-serif;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    color:#234f7d;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fdfefe,
+            #e8edf3 45%,
+            #d8e1ea 46%,
+            #cfd9e3
+        );
+
+    border-top:1px solid #ffffff;
+    border-left:1px solid #ffffff;
+
+    border-right:1px solid #8ea1b8;
+    border-bottom:1px solid #7c8ea5;
+
+    border-radius:12px;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.9),
+        inset 0 -1px 2px rgba(0,0,0,.12);
+
+    text-shadow:
+        0 1px #ffffff;
+
+    white-space:nowrap;
+
+    cursor:default;
+
+}
+#logoutBtn{
+
+    display:inline-block;
+
+    padding:4px 14px;
+
+    font-family:Tahoma, Arial, sans-serif;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    border:1px solid #7f2a2a;
+
+    border-radius:4px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #f47c7c,
+            #de5555 45%,
+            #c93b3b 46%,
+            #a82424
+        );
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.5),
+        0 1px rgba(0,0,0,.25);
+
+    text-shadow:
+        0 -1px rgba(0,0,0,.35);
+
+}
+
+#logoutBtn:hover{
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ff9c9c,
+            #f47c7c 45%,
+            #de5555 46%,
+            #c93b3b
+        );
+
+}
+
+#logoutBtn:active{
+
+    background:
+        linear-gradient(
+            to bottom,
+            #a82424,
+            #c93b3b
+        );
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,.4);
+
+}
+
+.help-page,
+.faq,
+.ai-response,
+.contact{
+
+    width:900px;
+
+    margin:20px auto;
+
+    padding:15px;
+
+    border:1px solid #8AA7D4;
+
+    background:#F7F9FC;
+
+    font-family:Tahoma, Arial;
+
+}
+
+.faq-btn{
+
+    display:block;
+
+    width:100%;
+
+    margin-bottom:8px;
+
+    padding:8px;
+
+    text-align:left;
+
+    font-family:Tahoma;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    border:1px solid #6E8FB8;
+
+    color: black;
+    background:linear-gradient(
+        to bottom,
+        #FDFEFE,
+        #DCE7F5
+    );
+
+}
+
+.faq-btn:hover{
+
+    background:linear-gradient(
+        to bottom,
+        #FFFFFF,
+        #C7DCF7
+    );
+
+}
+
+.answer{
+
+    min-height:140px;
+
+    padding:12px;
+
+    border:1px inset #A0A0A0;
+
+    background:white;
+
+    line-height:20px;
+
+    font-size:13px;
+
+}
+
+.contact p{
+
+    margin:5px 0;
+
+    font-size:12px;
+
+}
+
+.contentSpace {
+    flex: 1; /* Tells this container to stretch and consume all remaining empty space */
+}
+
+
+.badge-guest{
+
+    display:inline-block;
+
+    padding:3px 10px;
+
+    font-family:Tahoma, Arial, sans-serif;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    color:#234f7d;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fdfefe,
+            #e8edf3 45%,
+            #d8e1ea 46%,
+            #cfd9e3
+        );
+
+    border-top:1px solid #ffffff;
+    border-left:1px solid #ffffff;
+
+    border-right:1px solid #8ea1b8;
+    border-bottom:1px solid #7c8ea5;
+
+    border-radius:12px;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.9),
+        inset 0 -1px 2px rgba(0,0,0,.12);
+
+    text-shadow:
+        0 1px #ffffff;
+
+    white-space:nowrap;
+
+    cursor:default;
+
+}

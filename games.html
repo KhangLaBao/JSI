@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ - Game</title>
+    <title>GamepediaAI</title>
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="js/app.js"></script>
 </head>
@@ -11,7 +11,7 @@
 <header class="navbar">
 
     <div class="logo">
-        <p>Placeholder</p>
+        <img src="images/logo.png" alt="Logo">
     </div>
 
     <nav class="nav-links">
@@ -22,24 +22,40 @@
 
         <a href="search.html">Trình Tìm Kiếm</a>
 
-        <a href="reviews.html">Đánh Gía</a>
+        <a href="reviews.html">Đánh Giá</a>
 
         <a href="help.html">Trợ giúp bằng trí tuệ nhân tạo</a>
+
+        <a id="adminBtn"
+        href="admin.html"
+        style="display:none">
+
+        Admin
+
+        </a>
 
     </nav>
 
     <div class="account">
 
-        <a href="login.html">Đăng nhập</a>
+        <a href="logon/pages/login.html">Đăng nhập</a>
 
-        <a href="register.html">Đăng Kí</a>
+        <a href="logon/pages/register.html">Đăng Kí</a>
 
     </div>
 
 </header>
 
+<style>
+  body {
+    background-image: url('/images/d9fd0ro-38c7ba68-1261-4d12-b83b-32bff0d7cbb1.jpg');
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover;      /* Forces image to cover the entire screen */
+  }
+</style>
 
 
+<script src="js/search.js"></script>
 
 <section class="games-page">
 
@@ -61,83 +77,36 @@
             <option>Điểm cao nhất</option>
         </select>
 
-        <input type="text" placeholder="Tìm trò chơi...">
+    <form id="searchForm" >
 
-        <button>Tìm</button>
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Ví dụ: Minecraft"
+            name="q">
 
-    </div>
+        <button type="submit">Tìm kiếm</button>
 
-</section>
-
-<section class="game-grid">
-
-    <div class="game-card">
-
-        <img src="images/placeholder.png" alt="Game">
-
-        <h3>Minecraft</h3>
-
-        <p>⭐ 92</p>
-
-        <p>Sandbox • Adventure</p>
-
-        <button>Xem chi tiết</button>
-
-    </div>
-
-    <div class="game-card">
-
-        <img src="images/placeholder.png" alt="Game">
-
-        <h3>Grand Theft Auto V</h3>
-
-        <p>⭐ 96</p>
-
-        <p>Action • Open World</p>
-
-        <button>Xem chi tiết</button>
-
-    </div>
-
-    <div class="game-card">
-
-        <img src="images/placeholder.png" alt="Game">
-
-        <h3>Elden Ring</h3>
-
-        <p>⭐ 96</p>
-
-        <p>Action RPG</p>
-
-        <button>Xem chi tiết</button>
-
-    </div>
-
-    <div class="game-card">
-
-        <img src="images/placeholder.png" alt="Game">
-
-        <h3>Portal 2</h3>
-
-        <p>⭐ 95</p>
-
-        <p>Puzzle</p>
-
-        <button>Xem chi tiết</button>
+    </form>
 
     </div>
 
 </section>
 
-<div class="pagination">
+<center>
+    <section class="hero">
+    
+<div id="topRated" class="card-container"></div>
 
-    <button>&laquo; Trước</button>
+<div id="newest" class="card-container"></div>
 
-    <span>Trang 1 / 100</span>
+<div id="recommended" class="card-container"></div>
+</section>
+</center>
 
-    <button>Sau &raquo;</button>
+    <script src="js/games-db.js"></script>
+    <script src="js/index.js"></script>
 
-</div>
 
 
 <!-- ================= ABOUT ================= -->
@@ -158,6 +127,7 @@
 
 <!-- ================= FOOTER ================= -->
 
+<div class="contentSpace"></div>
 <footer>
 
     <p>
@@ -168,7 +138,7 @@
 
     <p>
 
-        Powered by OpenCritic API • Firebase • Gemini AI
+        Powered by OpenCritic API • Firebase • ChatGPT
 
     </p>
 

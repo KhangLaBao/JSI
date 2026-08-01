@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ - Game</title>
+    <title>GamepediaAI</title>
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="js/app.js"></script>
 </head>
@@ -11,7 +11,7 @@
 <header class="navbar">
 
     <div class="logo">
-        <p>Placeholder</p>
+        <img src="images/logo.png" alt="Logo">
     </div>
 
     <nav class="nav-links">
@@ -22,80 +22,276 @@
 
         <a href="search.html">Trình Tìm Kiếm</a>
 
-        <a href="reviews.html">Đánh Gía</a>
+        <a href="reviews.html">Đánh Giá</a>
 
         <a href="help.html">Trợ giúp bằng trí tuệ nhân tạo</a>
+
+        <a id="adminBtn"
+        href="admin.html"
+        style="display:none">
+
+        Admin
+
+        </a>
 
     </nav>
 
     <div class="account">
 
-        <a href="login.html">Đăng nhập</a>
+        <a href="logon/pages/login.html">Đăng nhập</a>
 
-        <a href="register.html">Đăng Kí</a>
+        <a href="logon/pages/register.html">Đăng Kí</a>
 
     </div>
 
 </header>
 
+<style>
+  body {
+    background-image: url('/images/17966.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* This keeps the image still */
+  }
+</style>
 
 
+<script>
+
+</script>
 
 <section class="help-page">
 
-    <h1>Trợ giúp AI</h1>
+    <h1>Trung tâm trợ giúp</h1>
 
     <p>
-
-        Đặt câu hỏi để AI hỗ trợ bạn sử dụng Gamepedia AI.
-
+Đặt câu hỏi cho Gamepedia AI hoặc chọn một câu hỏi thường gặp bên dưới.
     </p>
 
 </section>
 
-<section class="faq">
-
-    <h2>Câu hỏi thường gặp</h2>
-
-    <ul>
-
-        <li>Làm sao để tìm kiếm trò chơi?</li>
-
-        <li>Điểm OpenCritic là gì?</li>
-
-        <li>Làm sao để lưu trò chơi yêu thích?</li>
-
-        <li>Tài khoản dùng để làm gì?</li>
-
-    </ul>
-
-</section>
 
 <section class="ai-chat">
 
-    <h2>Hỏi AI</h2>
+    <h2>Hỏi Gamepedia AI</h2>
 
     <textarea
-        placeholder="Nhập câu hỏi..."></textarea>
+        id="aiQuestion"
+        placeholder="Nhập câu hỏi về trò chơi hoặc Gamepedia AI..."
+        rows="6"></textarea>
 
-    <button>Gửi</button>
+    <br><br>
+
+    <button id="askAI">
+        Gửi câu hỏi
+    </button>
 
 </section>
 
 <section class="ai-response">
 
-    <h2>Phản hồi</h2>
+    <h2>Phản hồi của Gamepedia AI</h2>
 
     <div class="answer">
 
         Xin chào!
 
-        Tôi có thể giúp bạn về Gamepedia AI.
+        Tôi là Gamepedia AI.
+
+        Hãy nhập câu hỏi rồi nhấn nút
+        <b>Gửi câu hỏi</b>.
 
     </div>
 
 </section>
 
+<script src="js/help.js"></script>
+
+
+
+
+<section class="faq">
+
+    <h2>Câu hỏi thường gặp</h2>
+
+    <button class="faq-btn"
+        onclick="showAnswer(
+            'Làm sao để tìm kiếm trò chơi?',
+            'Nhập tên trò chơi vào ô tìm kiếm trên trang chủ rồi nhấn nút Tìm kiếm. Gamepedia AI sẽ hiển thị các kết quả phù hợp.'
+        )">
+
+        Làm sao để tìm kiếm trò chơi?
+
+    </button>
+
+    <button class="faq-btn"
+        onclick="showAnswer(
+            'Điểm OpenCritic là gì?',
+            'OpenCritic là điểm đánh Giá trung bình được tổng hợp từ nhiều trang báo và nhà phê bình game trên toàn thế giới.'
+        )">
+
+        Điểm OpenCritic là gì?
+
+    </button>
+
+
+    <button class="faq-btn"
+    onclick="showAnswer(
+    'Tài khoản dùng để làm gì?',
+    'Khách truy cập có thể sử dụng Gamepedia AI với giới hạn 3 lượt tìm kiếm miễn phí. Đăng ký một tài khoản miễn phí sẽ cho phép bạn tiếp tục tìm kiếm không giới hạn, lưu danh sách trò chơi yêu thích và sử dụng đầy đủ các dịch vụ của Gamepedia AI.'
+    )">
+
+    Tài khoản dùng để làm gì?
+
+    </button>
+
+    <button class="faq-btn"
+        onclick="showAnswer(
+            'Gamepedia AI lấy dữ liệu ở đâu?',
+            'Thông tin đánh Giá được lấy từ OpenCritic. Một số nội dung khác được tổng hợp từ cơ sở dữ liệu của Gamepedia AI.'
+        )">
+
+        Gamepedia AI lấy dữ liệu ở đâu?
+
+    </button>
+
+    <button class="faq-btn"
+onclick="showAnswer(
+'Tìm kiếm hoạt động như thế nào?',
+'Gamepedia AI sử dụng cơ sở dữ liệu OpenCritic để tìm kiếm trò chơi. Chỉ cần nhập tên trò chơi vào ô tìm kiếm và nhấn nút Tìm kiếm.'
+)">
+Tìm kiếm hoạt động như thế nào?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Điểm OpenCritic là gì?',
+'Điểm OpenCritic là điểm đánh giá tổng hợp từ nhiều trang báo và nhà phê bình trên toàn thế giới. Điểm càng cao, trò chơi càng được đánh giá tích cực.'
+)">
+Điểm OpenCritic là gì?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Tại sao tôi chỉ tìm kiếm được 3 lần?',
+'Khách truy cập được phép sử dụng tối đa 3 lượt tìm kiếm miễn phí. Sau đó, bạn cần đăng nhập hoặc tạo tài khoản để tiếp tục sử dụng chức năng tìm kiếm và các tính năng khác.'
+)">
+Tại sao tôi chỉ tìm kiếm được 3 lần?
+</button>
+
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Tại sao một số trò chơi không có hình ảnh?',
+'Không phải tất cả trò chơi trong cơ sở dữ liệu đều có ảnh bìa. Khi đó, Gamepedia AI sẽ hiển thị hình ảnh mặc định.'
+)">
+Tại sao một số trò chơi không có hình ảnh?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Tại sao điểm số của trò chơi thay đổi?',
+'Điểm OpenCritic được cập nhật khi có thêm bài đánh giá mới từ các nhà phê bình. Vì vậy điểm số có thể thay đổi theo thời gian.'
+)">
+Tại sao điểm số của trò chơi thay đổi?
+</button>
+
+
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Gamepedia AI lấy dữ liệu từ đâu?',
+'Gamepedia AI sử dụng dữ liệu từ OpenCritic và chỉ hiển thị thông tin nhằm mục đích tra cứu và học tập.'
+)">
+Gamepedia AI lấy dữ liệu từ đâu?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Tôi có cần trả phí không?',
+'Không. Việc tạo tài khoản và sử dụng Gamepedia AI hoàn toàn miễn phí.'
+)">
+Tôi có cần trả phí không?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Website này có phải OpenCritic không?',
+'Không. Gamepedia AI là một dự án học tập độc lập sử dụng dữ liệu công khai từ OpenCritic thông qua API.'
+)">
+Website này có phải OpenCritic không?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Tôi phát hiện lỗi thì làm sao?',
+'Bạn có thể gửi email tới gamepedia-ai@support.example để báo lỗi hoặc góp ý nhằm giúp cải thiện website.'
+)">
+Tôi phát hiện lỗi thì làm sao?
+</button>
+
+<button class="faq-btn"
+onclick="showAnswer(
+'Tại sao đôi lúc tìm kiếm không hoạt động?',
+'Trong một số trường hợp, dịch vụ OpenCritic hoặc giới hạn API có thể khiến việc tìm kiếm tạm thời không khả dụng. Vui lòng thử lại sau.'
+)">
+Tại sao đôi lúc tìm kiếm không hoạt động?
+</button>
+</section>
+
+<section class="ai-response">
+
+    <h2 id="answerTitle">
+
+        Chào mừng!
+
+    </h2>
+
+    <div class="answer" id="answerBox">
+
+        Chọn một câu hỏi ở phía trên để xem câu trả lời.
+
+    </div>
+
+</section>
+
+<section class="contact">
+
+    <h2>Liên hệ hỗ trợ</h2>
+
+    <p>
+
+        Nếu bạn vẫn không tìm thấy câu trả lời, vui lòng liên hệ:
+
+    </p>
+
+    <p>
+
+        📧 support@gamepedia-ai.com
+
+    </p>
+
+    <p>
+
+        📧 administrator@gamepedia-ai.com
+
+    </p>
+
+</section>
+
+
+<script>
+
+    function showAnswer(title, answer){
+
+    document.getElementById("answerTitle").textContent = title;
+
+    document.getElementById("answerBox").innerHTML = answer;
+
+}
+
+
+</script>
 
 
 <!-- ================= ABOUT ================= -->
@@ -116,6 +312,7 @@
 
 <!-- ================= FOOTER ================= -->
 
+<div class="contentSpace"></div>
 <footer>
 
     <p>
@@ -126,7 +323,7 @@
 
     <p>
 
-        Powered by OpenCritic API • Firebase • Gemini AI
+        Powered by OpenCritic API • Firebase • ChatGPT
 
     </p>
 

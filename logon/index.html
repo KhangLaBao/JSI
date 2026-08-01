@@ -1,135 +1,122 @@
+<!DOCTYPE html>
+<html>
 
-<!doctype html>
-<html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Firebase Lesson Template · Xác thực & phân quyền</title>
-  <link rel="stylesheet" href="./css/styles.css" />
+
+<title>Redirecting...</title>
+
+<meta http-equiv="refresh" content="5;url=index.html">
+
+<style>
+
+body{
+
+    background:#C0C0C0;
+
+    font-family:Tahoma, Arial;
+
+    font-size:12px;
+
+    color:#000;
+
+    margin-top:80px;
+
+    text-align:center;
+
+}
+
+.box{
+
+    width:420px;
+
+    margin:auto;
+
+    background:#FFFFFF;
+
+    border:2px outset #C0C0C0;
+
+    padding:20px;
+
+}
+
+h2{
+
+    margin-top:0;
+
+    font-size:16px;
+
+    color:#000080;
+
+}
+
+</style>
+
+<script>
+
+var seconds = 0;
+
+function countdown(){
+
+    document.getElementById("count").innerHTML = seconds;
+
+    if(seconds <= 0){
+
+        window.location.href = "/index.html";
+
+    }else{
+
+        seconds--;
+
+        setTimeout(countdown,1000);
+
+    }
+
+}
+
+window.onload = countdown;
+
+</script>
+
 </head>
-<body data-page="home">
-  <div class="app-shell">
-    <header class="topbar">
-      <a class="brand-block" href="./index.html">
-        <span class="brand-mark">FL</span>
-        <span>
-          <strong>Firebase Lesson Template</strong>
-          <small data-header-role>Guest</small>
-        </span>
-      </a>
 
-      <nav class="nav">
-        <a class="active" href="./index.html">Tổng quan</a>
-        <a href="./pages/login.html">Đăng nhập</a>
-        <a href="./pages/register.html">Đăng ký</a>
-        
-        <a href="./pages/shop.html">Shop</a>
-        <a href="./pages/admin.html">Admin</a>
-      </nav>
+<body>
 
-      <div class="auth-actions" data-auth-actions>
-        <a class="btn btn-ghost" href="./pages/login.html">Đăng nhập</a>
-        <a class="btn btn-primary" href="./pages/register.html">Đăng ký</a>
-      </div>
-    </header>
+<div class="box">
 
-    <main class="layout-grid">
-      <section class="card hero">
-        <div class="eyebrow">Bài 4 · Firebase Authentication</div>
-        <h1>Xác thực và phân quyền cho web bán hàng</h1>
-        <p class="lead">
-          Template này chỉ dạy đúng 2 phần: đăng ký / đăng nhập / đăng xuất bằng Firebase thật, và chặn Shop khi chưa đăng nhập.
-          Phần Admin chỉ là bước minh họa role trước khi học Firestore.
-        </p>
+<h2>Redirecting...</h2>
 
-        <div class="meta-row" style="margin-top:22px;">
-          <span class="chip">Email / Password</span>
-          <span class="chip">Shop lock</span>
-          <span class="chip">Auth state</span>
-          <span class="chip">Role demo</span>
-        </div>
+<p>
 
-        <div class="action-row" style="margin-top:24px;">
-          <a class="btn btn-primary" href="./pages/shop.html">Mở shop</a>
-          <a class="btn btn-ghost" href="./pages/login.html">Đi đến đăng nhập</a>
-          <a class="btn btn-ghost" href="./pages/register.html">Đi đến đăng ký</a>
-        </div>
+The page you requested has moved.
 
-        <div class="callout" style="margin-top:24px;">
-          <strong>Nguyên tắc của bài học</strong>
-          <p class="tiny" style="margin-top:8px;">
-            Không dùng user mẫu, không mock đăng nhập, không localStorage cho session.
-            Học sinh phải kết nối Firebase thật thì mới chạy được.
-          </p>
-        </div>
-      </section>
+</p>
 
-      <aside class="card panel">
-        <div class="section-head">
-          <h2>Quy ước bài học</h2>
-          <p>Làm theo đúng thứ tự trên lớp.</p>
-        </div>
-        <div id="lessonSteps" class="steps-grid"></div>
-      </aside>
+<p>
 
-      <section class="card panel section-span-2">
-        <div class="section-head">
-          <h2>Luồng làm bài</h2>
-          <p>Đây là checklist trực tiếp cho học sinh.</p>
-        </div>
-        <div class="flow-grid">
-          <article class="mini-card">
-            <div class="step-num">1</div>
-            <h3>Firebase project</h3>
-            <p>Tạo project và Web App trong Firebase Console.</p>
-          </article>
-          <article class="mini-card">
-            <div class="step-num">2</div>
-            <h3>Authentication</h3>
-            <p>Bật Email/Password provider.</p>
-          </article>
-          <article class="mini-card">
-            <div class="step-num">3</div>
-            <h3>Đăng ký</h3>
-            <p>Nhập email hợp lệ và mật khẩu tối thiểu 6 ký tự.</p>
-          </article>
-          <article class="mini-card">
-            <div class="step-num">4</div>
-            <h3>Đăng nhập</h3>
-            <p>Chỉ dùng tài khoản đã tạo thật trên Firebase.</p>
-          </article>
-          <article class="mini-card">
-            <div class="step-num">5</div>
-            <h3>Shop</h3>
-            <p>Trang Shop phải khóa khi chưa đăng nhập.</p>
-          </article>
-          <article class="mini-card">
-            <div class="step-num">6</div>
-            <h3>Admin demo</h3>
-            <p>Bấm nút đổi role minh họa để thấy khác nhau giữa user và admin.</p>
-          </article>
-        </div>
-      </section>
+You will be redirected to the homepage in
+<b><span id="count">0</span></b>
+seconds.
 
-      <section class="card panel">
-        <div class="section-head">
-          <h2>File cần chỉnh</h2>
-          <p>Chỉ cần chạm vào các file này.</p>
-        </div>
-        <div id="fileList" class="file-grid"></div>
-      </section>
+</p>
 
-      <section class="card panel">
-        <div class="section-head">
-          <h2>Nhắc nhanh</h2>
-          <p>Các thứ không dùng trong bài này.</p>
-        </div>
-        <div id="quickNote" class="side-stack"></div>
-      </section>
-    </main>
+<p>
 
-    <p class="footer">Template dạy Firebase Authentication thật · Shop và Admin chỉ mở khi đủ điều kiện.</p>
-  </div>
-  <script type="module" src="./js/app.js"></script>
+If your browser does not redirect automatically,
+
+<a href="index.html">click here</a>.
+
+</p>
+
+<hr>
+
+<small>
+
+Gamepedia AI © 2026
+
+</small>
+
+</div>
+
 </body>
+
 </html>
